@@ -10,10 +10,10 @@ const view = new EditorView({
   parent: document.body,
 });
 
-setTimeout(
-  () =>
-    view.dispatch({
-      effects: compartment.reconfigure([]),
-    }),
-  1000,
-);
+let count = 0;
+setInterval(() => {
+  count += 1;
+  view.dispatch({
+    effects: compartment.reconfigure(count % 2 === 1 ? [] : oneDark),
+  });
+}, 1000);
